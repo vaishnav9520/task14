@@ -1,105 +1,101 @@
-Creating a good README file for your GitHub repository is essential for conveying the purpose of your project and guiding users through the steps to replicate or use it. Here's a structured template you can follow to create a comprehensive README file for your web application deployment project:
+Sure! Here’s a README template for your task 14 project. You can modify it as needed.
 
-# Web Application Deployment on Cloud VM
+---
+
+# Task 14: Cloud VM Setup and Web Development
 
 ## Overview
-This repository contains the steps and scripts to deploy a web application on a cloud Virtual Machine (VM) using Apache, PHP, and MariaDB. It includes the configuration of the server, database setup, and user registration functionality.
+In this task, I will document the steps taken to set up a free virtual machine (VM) on a cloud platform (AWS/GCP/Azure), deploy a simple HTML page, and configure a PHP and MySQL environment. Screenshots are included to demonstrate each step.
 
-## Table of Contents
-1. [Prerequisites](#prerequisites)
-2. [Deployment Steps](#deployment-steps)
-3. [Accessing the Web Application](#accessing-the-web-application)
-4. [Database Structure](#database-structure)
-5. [User Registration Functionality](#user-registration-functionality)
-6. [Screenshots](#screenshots)
-7. [Conclusion](#conclusion)
+## Steps Taken
 
-## Prerequisites
-- A cloud VM (AWS EC2 instance recommended)
-- SSH key pair for secure access
-- Basic knowledge of Linux commands
+### 1. Create a Free VM
+- **Cloud Platform**: [Specify AWS/GCP/Azure]
+- **Steps**:
+  - Sign up for a free cloud account.
+  - Navigate to the VM creation section.
+  - Select a free tier instance type.
+  - Configure the instance (OS, region, etc.).
+  - Launch the instance.
 
-## Deployment Steps
-
-### Step 1: Log in to Cloud VM
-- Opened Kali Linux terminal and logged into the cloud VM via SSH.
-- Command:
+### 2. SSH into the Cloud VM
+- **Command Used**:
   ```bash
-  sudo ssh -i Documents/cloudkey.pem ec2-user@34.230.49.137
-Step 2: Clone Repository
-Cloned the repository from GitHub:
-git clone https://github.com/AbhiramT21/webapp
-Step 3: Copy Files to Apache Root Folder
-Copied the cloned files to the Apache root folder:
-sudo cp -r /home/ec2-user/webapp/cloudweb /var/www/html
-Step 4: Start Apache Web Server
-Installed and started the Apache web server:
-sudo yum install httpd
-sudo systemctl start httpd
-Step 5: Configure Security Groups
-Updated AWS instance Security Groups to allow HTTP and HTTPS traffic.
-Step 6: Access Web Page
-Accessed the deployed web page via a local web browser.
-Step 7: Install PHP and MariaDB
-Installed PHP:
-sudo yum install php
-Installed MariaDB Server:
-sudo yum install mariadb105-server
-Step 8: Start MariaDB Server
-Started the MariaDB server and logged in:
-sudo systemctl start mariadb
-mysql -u root
-Step 9: Create Database, Table, and User
-Created a database and table:
-CREATE DATABASE register;
-USE register;
-CREATE TABLE registration (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(100),
-    phone_number VARCHAR(15),
-    password VARCHAR(255)
-);
-Step 10: Create User Registration Files
-Developed PHP files for user registration and data handling.
-Step 11: Log In as Created User
-Demonstrated logging in with user credentials and data storage.
-Step 12: Verify Accessibility
-Verified accessibility using the public IP address: 44.211.206.95.
-Database Structure
-The database contains the following structure:
+  ssh username@public-ip-address
+  ```
+- **Screenshot**: ![SSH Screenshot](path/to/your/ssh_screenshot.png)
 
-Database: register
-Table: registration
-Fields:
-id: Unique identifier for each user.
-name: User's full name.
-email: User's email address.
-phone_number: User's phone number.
-password: User's hashed password.
-User Registration Functionality
-The application allows users to register with their name, email, phone number, and password. The data is securely stored in the MariaDB database.
+### 3. Clone the Repository
+- **Command**:
+  ```bash
+  git clone <repo-url>
+  ```
+- **Notes**: Cloned the repository containing the HTML page from Task 12.
 
-Screenshots
-Include screenshots demonstrating each step of the process here.
+### 4. Copy Files to Apache Web Server
+- **Command**:
+  ```bash
+  sudo cp -r repo-folder/* /var/www/html/
+  ```
+- **Notes**: Copied all necessary files to the root folder of the Apache web server.
 
-SSH Login: Screenshot-1
-Repository Cloning: Screenshot-2
-Copying Files: Screenshot-3
-Starting Apache: Screenshot-4
-Accessing Web Page: Screenshot-5
-Creating Database: Screenshot-9
-Creating Table: Screenshot-10
-Conclusion
-This document outlines the steps taken to successfully deploy a web application on a cloud VM. The application features user registration with data stored securely in a MariaDB database.
+### 5. Start the Apache Web Server
+- **Command**:
+  ```bash
+  sudo systemctl start apache2
+  ```
+- **Accessing the Web Page**:
+  - Open a web browser and navigate to `http://public-ip-address`.
+- **Screenshot**: ![Web Page Screenshot](path/to/your/web_page_screenshot.png)
 
-Feel free to contribute to this repository or reach out for any questions.
+### 6. Install PHP and MySQL
+- **Commands**:
+  ```bash
+  sudo apt update
+  sudo apt install php libapache2-mod-php mysql-server
+  ```
+- **Start MySQL Server**:
+  ```bash
+  sudo systemctl start mysql
+  ```
+- **Login to MySQL**:
+  ```bash
+  mysql -u root -p
+  ```
+- **Screenshot**: ![MySQL Screenshot](path/to/your/mysql_screenshot.png)
 
+### 7. Create Database, Table, and User
+- **Commands**:
+  ```sql
+  CREATE DATABASE mydatabase;
+  CREATE TABLE mytable (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255), password VARCHAR(255));
+  CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'mypassword';
+  GRANT ALL PRIVILEGES ON mydatabase.* TO 'myuser'@'localhost';
+  FLUSH PRIVILEGES;
+  ```
+- **Notes**: Successfully created the database and user.
 
-### Tips for Customization:
-- **Personalize the Overview**: Add a brief description of the purpose of your web application and any specific technologies or frameworks used.
-- **Add More Screenshots**: Include any additional relevant screenshots that could help visualize the steps taken.
-- **Links to Documentation**: Consider linking to relevant documentation for Apache, PHP, or MariaDB for further reading.
-- **Markdown Formatting**: Use proper Markdown formatting for code snippets, links, and images.
+### 8. PHP Files for User Registration
+- **Steps**:
+  - Created necessary PHP files for user registration.
+  - Ensured they save data in the created database table.
 
-This template will help provide clear instructions and information about your project, making it easier for others to understand and use.
+### 9. User Login
+- **Testing**:
+  - Logged in as the user created.
+- **Screenshot**: ![Login Screenshot](path/to/your/login_screenshot.png)
+
+### 10. Public IP and Access
+- **Public IP**: [Your Public IP]
+- **Notes**: The web page is accessible to anyone with the IP address.
+
+## Conclusion
+Successfully set up a cloud VM, deployed a web application, and configured a PHP and MySQL environment. The application is publicly accessible, earning the Cloud Dweller badge!
+
+## Files
+- [Text File with Steps](path/to/your/steps.txt)
+- [Screenshots](path/to/your/screenshots/)
+
+---
+
+Feel free to adjust any sections to better match your project details!
